@@ -1,0 +1,6 @@
+{
+  "name": "EMAIL API guy",
+  "description": "A clean, high-precision domain routing, email deliverability, and DNS mastery platform styled with a human-designed minimal interface.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
