@@ -76,16 +76,16 @@ export default function Navbar() {
               Cost Estimator
             </Link>
             <Link 
-              href="/contact"
-              className={`text-sm font-bold transition-colors ${pathname === "/contact" ? "text-amber-600" : "text-zinc-800 hover:text-amber-600"}`}
+              href="mailto:info@emailapiguy.com?subject=Inquiry%20to%20Email%20API%20Guy"
+              className="text-sm font-bold transition-colors text-zinc-800 hover:text-[#1d4ed8]"
             >
               Contact Us
             </Link>
             <Link 
-              href="/contact"
+              href="mailto:info@emailapiguy.com?subject=Inquiry%20to%20Email%20API%20Guy"
               className="bg-[#1d4ed8] hover:bg-[#1e40af] text-white text-xs font-bold uppercase px-4 py-2.5 rounded border border-blue-700 transition-all tracking-wider"
             >
-              Get in Touch ✉️
+              Email Us ✉️
             </Link>
           </div>
 

@@ -3,7 +3,7 @@ import { MetadataRoute } from 'next';
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://emailapiguy.com';
 
-  const routes = ['', '/services', '/pricing', '/contact'].map((route) => ({
+  const routes = ['', '/services', '/pricing'].map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date().toISOString(),
     changeFrequency: 'weekly' as const,
