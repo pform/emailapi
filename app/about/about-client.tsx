@@ -306,7 +306,7 @@ export default function AboutPage() {
                 </p>
               </div>
               <Link 
-                href="mailto:info@emailapiguy.com?subject=Deploy%2520Correct%252520DNS%2520Routing"
+                href="/contact"
                 className="group bg-white text-zinc-950 hover:bg-zinc-100 px-6 py-3.5 rounded-xl text-xs font-black uppercase tracking-widest flex items-center gap-1.5 transition-transform hover:-translate-y-0.5 active:translate-y-0 text-center flex-shrink-0 shadow-md"
               >
                 RECLAIM SANITY <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />

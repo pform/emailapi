@@ -235,7 +235,7 @@ export default function HomePage() {
             {/* CTAs (Tactile organic warm button effects instead of futuristic neon gradients) */}
             <motion.div variants={itemVariants} className="pt-2 flex flex-col sm:flex-row gap-4">
               <Link 
-                href="mailto:info@emailapiguy.com?subject=Domain%2520Alignment%2520Inquiry"
+                href="/contact"
                 className="group inline-flex items-center justify-center gap-2 bg-amber-600 hover:bg-amber-500 border-b-4 border-amber-800 active:border-b-0 active:translate-y-0.5 text-white text-xs font-bold uppercase tracking-widest px-8 py-4 rounded-xl shadow-md transition-all"
               >
                 Inquire About Domain Alignment
@@ -1020,11 +1020,11 @@ export default function HomePage() {
 
               <div className="pt-8">
                 <Link 
-                  href="mailto:info@emailapiguy.com?subject=Consultation%2520with%2520Chester"
+                  href="/contact"
                   className="w-full inline-flex items-center justify-center gap-2 bg-amber-600 hover:bg-amber-500 border-b-4 border-amber-800 active:border-b-0 active:translate-y-0.5 text-white text-xs font-bold uppercase tracking-widest py-4 rounded-xl shadow-md transition-all text-center"
                   id="contact-button"
                 >
-                  Connect with Chester Carlson (Email) ✉️
+                  Connect with Chester Carlson ✉️
                 </Link>
               </div>
             </div>

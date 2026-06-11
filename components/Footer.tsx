@@ -31,12 +31,7 @@ export default function Footer() {
             <Link href="/about" className="hover:text-amber-600 transition-colors">About Chester</Link>
             <Link href="/services" className="hover:text-amber-600 transition-colors">Services</Link>
             <Link href="/pricing" className="hover:text-amber-600 transition-colors">Cost Estimator</Link>
-            <Link href="mailto:info@emailapiguy.com?subject=Inquiry%20to%20Email%20API%20Guy" className="hover:text-amber-600 font-bold border-b border-amber-300 transition-colors pb-0.5">Email Chester</Link>
-          </div>
-          
-          <div className="inline-flex items-center gap-2 bg-white px-3 py-1.5 rounded-xl border border-zinc-200 shadow-sm text-xs mt-1">
-            <span className="text-zinc-500 font-sans text-[11px]">Direct Inbox:</span>
-            <MungedEmail textClassName="text-xs font-bold text-zinc-800 hover:text-amber-600" showIcon={false} showCopy={true} />
+            <Link href="/contact" className="hover:text-amber-600 font-bold border-b border-amber-300 transition-colors pb-0.5">Contact</Link>
           </div>
         </div>
 
