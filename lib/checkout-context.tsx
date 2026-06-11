@@ -75,6 +75,18 @@ export function CheckoutProvider({ children }: { children: React.ReactNode }) {
       }
 
       setCheckoutStep("success");
+
+      // Immediately open mailto to ensure deliverability
+      const subjectValue = `🚨 SERVICE PURCHASE REQUEST: ${selectedProduct.name} by ${billingForm.name}`;
+      const bodyValue = `Official DNS Service Order Request Details:\n\n` + 
+                        `• Selected Service: ${selectedProduct.name}\n` +
+                        `• Price Rate: ${selectedProduct.price}\n` +
+                        `• Customer Name: ${billingForm.name}\n` +
+                        `• Corporate Email: ${billingForm.email}\n` +
+                        `• Target Domain to Repair: ${billingForm.domain}\n\n` +
+                        `Chester, please initiate this service setup and send over custom handshake details and an invoice.`;
+      
+      window.location.href = `mailto:info@emailapiguy.com?subject=${encodeURIComponent(subjectValue)}&body=${encodeURIComponent(bodyValue)}`;
     } catch (err) {
       console.error("[Checkout Error]:", err);
       setCheckoutError(err instanceof Error ? err.message : "An unexpected server exception occurred.");
@@ -185,7 +197,7 @@ export function CheckoutProvider({ children }: { children: React.ReactNode }) {
                       disabled={checkoutLoading}
                       className="w-full bg-[#1d4ed8] hover:bg-[#1e40af] text-white font-bold uppercase tracking-wider text-xs py-3.5 rounded border border-blue-700 transition-colors cursor-pointer"
                     >
-                      {checkoutLoading ? "SUBMITTING TELEMETRY ORDER..." : "REQUEST THIS SERVICE SETUP ⚡"}
+                      {checkoutLoading ? "SUBMITTING REQUEST..." : "REQUEST THIS SERVICE SETUP ⚡"}
                     </button>
                     <span className="text-[10px] text-zinc-400 text-center block mt-2 font-medium">
                       🔒 Direct Human Booking • No Credit Card Required Today
@@ -199,9 +211,9 @@ export function CheckoutProvider({ children }: { children: React.ReactNode }) {
                     <CheckCircle2 className="w-6 h-6 text-emerald-600 animate-pulse" />
                   </div>
                   <div className="space-y-1">
-                    <h3 className="text-base font-extrabold text-zinc-900 font-sans">Service Request Logged Successfully!</h3>
+                    <h3 className="text-base font-extrabold text-zinc-900 font-sans">Service Request Submitted!</h3>
                     <p className="text-xs text-zinc-500">
-                      Telemetry order saved in Chester&apos;s central registry files.
+                      Your interest was logged and we formatted your email client.
                     </p>
                   </div>
 
@@ -215,16 +227,11 @@ export function CheckoutProvider({ children }: { children: React.ReactNode }) {
                     <p><strong>Client:</strong> {billingForm.name} ({billingForm.email})</p>
                   </div>
 
-                  {/* Guaranteed outbound mail hanchand-off */}
-                  <div className="bg-amber-50/70 border border-amber-200 rounded-xl p-4 text-left space-y-3">
-                    <div className="space-y-0.5">
-                      <span className="text-[9px] font-mono font-bold text-amber-800 uppercase bg-amber-100 px-1.5 py-0.5 rounded border border-amber-200">
-                        📬 GUARANTEED INBOX DISPATCH (1-CLICK)
-                      </span>
-                      <p className="text-[11px] text-zinc-650 leading-normal pt-1">
-                        Ensure instant deliverability without API lag. Click below to launch your pre-formatted order draft directly in your preferred email application!
-                      </p>
-                    </div>
+                  {/* Clean guarantee of direct email delivery */}
+                  <div className="bg-zinc-50 border border-zinc-200 rounded-xl p-4 text-left space-y-2">
+                    <p className="text-[11px] text-zinc-600 leading-normal">
+                      We have launched your default email app with a pre-formatted draft to <strong>info@emailapiguy.com</strong>. Please check your mail client and hit send. You can also re-trigger it:
+                    </p>
                     <button
                       type="button"
                       onClick={() => {
@@ -235,19 +242,19 @@ export function CheckoutProvider({ children }: { children: React.ReactNode }) {
                                           `• Customer Name: ${billingForm.name}\n` +
                                           `• Corporate Email: ${billingForm.email}\n` +
                                           `• Target Domain to Repair: ${billingForm.domain}\n\n` +
-                                          `Chester, please initiate this service setup and send over custom handshake details and an invoice.`;
+                                          `Chester, please initiate this service setup and send over custom details and an invoice.`;
                         window.location.href = `mailto:info@emailapiguy.com?subject=${encodeURIComponent(subjectValue)}&body=${encodeURIComponent(bodyValue)}`;
                       }}
-                      className="w-full inline-flex items-center justify-center gap-1.5 bg-amber-600 hover:bg-amber-700 text-white text-[11px] font-bold uppercase py-2.5 rounded-lg shadow cursor-pointer transition-all active:scale-[0.99]"
+                      className="w-full inline-flex items-center justify-center gap-1.5 bg-zinc-950 hover:bg-zinc-850 text-white text-[11px] font-bold uppercase py-2.5 rounded-lg shadow cursor-pointer transition-all active:scale-[0.99]"
                     >
-                      <span>Launch Prefilled Order Draft ✉️</span>
+                      <span>Open Pre-filled Email Draft ✉️</span>
                     </button>
                   </div>
 
                   <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
                     <button
                       onClick={closeCheckout}
-                      className="bg-zinc-900 hover:bg-zinc-850 text-white font-bold uppercase px-6 py-3 rounded-lg text-[10px] tracking-wider w-full cursor-pointer"
+                      className="bg-zinc-100 hover:bg-zinc-200 border border-zinc-300 text-zinc-700 font-bold uppercase px-6 py-3 rounded-lg text-[10px] tracking-wider w-full cursor-pointer"
                     >
                       Return to Portal
                     </button>

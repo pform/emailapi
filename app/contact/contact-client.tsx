@@ -94,6 +94,18 @@ export default function ContactPage() {
       }
 
       setFormSubmitted(true);
+
+      // Immediately execute native email delivery fallback to guarantee Chester Carlson receives it!
+      const subjectValue = `🚨 DNS DISTRESS TICKET: ${contactForm.domain || "Unknown Domain"} from ${contactForm.name || "Customer"}`;
+      const bodyValue = `Support Request Details:\n\n` + 
+                        `• Name: ${contactForm.name || "(Not entered)"}\n` +
+                        `• Contact Email: ${contactForm.email || "(Not entered)"}\n` +
+                        `• Broken Domain: ${contactForm.domain || "(Not entered)"}\n` +
+                        `• Core Pain Category: ${contactForm.pains || "(Not entered)"}\n` +
+                        `• Specific Messages / Notes:\n${contactForm.notes || "(None entered)"}\n\n` +
+                        `Please help me audit my server reputation and align MX/SPF parameters.`;
+      
+      window.location.href = `mailto:info@emailapiguy.com?subject=${encodeURIComponent(subjectValue)}&body=${encodeURIComponent(bodyValue)}`;
     } catch (err) {
       console.error("[Submit Error]:", err);
       setFormError(err instanceof Error ? err.message : "An unexpected server error occurred.");
@@ -124,7 +136,7 @@ export default function ContactPage() {
         
         {/* Header Title with animations */}
         <motion.div 
-          className="text-center max-w-2xl mx-auto space-y-4 mb-16"
+          className="text-center max-w-2xl mx-auto space-y-4 mb-12"
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
@@ -135,22 +147,9 @@ export default function ContactPage() {
           <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-zinc-900 leading-tight">
             Submit Your Technical Support Inquiry
           </h1>
-          <p className="text-sm text-zinc-650 leading-relaxed max-w-xl mx-auto">
-            I will personally audit your server records, check cryptographic SPF/DKIM key definitions, and resolve your mailbox sender reputation issues without relying on automated support bots.
+          <p className="text-sm text-zinc-600 leading-relaxed max-w-xl mx-auto">
+            I will personally audit your server records, check cryptographic SPF/DKIM details, and resolve your mailbox sender reputation issues.
           </p>
-
-          {/* Test Trigger Helper block to test connection form sending */}
-          <div className="pt-2">
-            <button
-              type="button"
-              onClick={loadTestValues}
-              className="inline-flex items-center gap-2 bg-zinc-100 hover:bg-zinc-200 text-zinc-700 transition-colors text-[11px] font-mono font-bold px-3 py-1.5 border border-zinc-300 rounded-md shadow-sm"
-              title="Populates form with complete test dataset to verify connection parameters"
-            >
-              <RefreshCw className={`w-3 h-3 text-[#61b000] ${testModeUsed ? 'animate-spin' : ''}`} />
-              Auto-Fill Diagnostic Parameters
-            </button>
-          </div>
         </motion.div>
 
         <motion.div 
@@ -169,18 +168,14 @@ export default function ContactPage() {
             
             {!formSubmitted ? (
               <div className="space-y-6 relative z-10 animate-fade-in" id="contact-form-wrapper-block">
-                {/* Prominent high-visibility Munged direct email box */}
-                <div className="bg-amber-50/80 border border-amber-200 rounded-2xl p-4.5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4" id="prominent-direct-email-ref">
-                  <div className="space-y-1">
-                    <span className="inline-flex items-center gap-1.5 text-[10px] uppercase font-mono font-bold tracking-wider text-amber-850 px-2.5 py-0.5 bg-amber-100 rounded border border-amber-200">
-                      ⚡ DIRECT CONTACT ALTERNATIVE
-                    </span>
-                    <p className="text-xs text-zinc-600 font-sans leading-relaxed pt-1">
-                      Prefer direct communication? Skip the form entirely and reach the specialist at:
-                    </p>
-                  </div>
-                  <div className="bg-white px-3.5 py-2 rounded-xl border border-amber-200/80 shadow-sm shrink-0">
-                    <MungedEmail textClassName="text-xs font-bold text-amber-800 hover:text-amber-600 font-mono" showIcon={false} showCopy={true} />
+                {/* Prominent high-visibility Munged direct email helper info */}
+                <div className="text-center pb-4 border-b border-dashed border-zinc-200 mb-6" id="prominent-direct-email-ref">
+                  <span className="text-[11px] font-mono font-bold text-zinc-400 uppercase tracking-widest block mb-1">
+                    DIRECT EMAIL CHANNEL
+                  </span>
+                  <div className="flex justify-center items-center gap-1.5 flex-wrap text-sm text-zinc-650">
+                    <span>Reach Chester directly at:</span>
+                    <MungedEmail textClassName="font-extrabold text-[#61b000] hover:text-amber-600 font-mono text-sm border-b border-[#61b000]/30" showIcon={false} showCopy={true} />
                   </div>
                 </div>
 
@@ -292,97 +287,59 @@ export default function ContactPage() {
                   </button>
                 </div>
 
-                <div className="pt-5 border-t border-dashed border-zinc-200 mt-6 text-center space-y-3">
-                  <p className="text-[11px] text-zinc-500 font-sans leading-relaxed">
-                    💡 <strong>Delivery Backup Alternative:</strong> If automated sandbox mail dispatch is currently restricted in this local preview environment, you can send these support details to the consultant directly in one click!
-                  </p>
-                  <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-                    <MungedEmail textClassName="text-xs text-amber-700 font-bold" iconClassName="w-3.5 h-3.5" showCopy={true} />
-                    <button
-                      type="button"
-                      onClick={() => {
-                        const subjectValue = `🚨 DNS DISTRESS TICKET: ${contactForm.domain || "Unknown Domain"} from ${contactForm.name || "Customer"}`;
-                        const bodyValue = `Support Request Details:\n\n` + 
-                                          `• Name: ${contactForm.name || "(Not entered)"}\n` +
-                                          `• Contact Email: ${contactForm.email || "(Not entered)"}\n` +
-                                          `• Broken Domain: ${contactForm.domain || "(Not entered)"}\n` +
-                                          `• Core Pain Category: ${contactForm.pains || "(Not entered)"}\n` +
-                                          `• Specific Messages / Notes:\n${contactForm.notes || "(None entered)"}\n\n` +
-                                          `Please help me audit my server reputation and align MX/SPF parameters.`;
-                        window.location.href = `mailto:info@emailapiguy.com?subject=${encodeURIComponent(subjectValue)}&body=${encodeURIComponent(bodyValue)}`;
-                      }}
-                      className="inline-flex items-center gap-1.5 text-[10px] font-sans font-bold uppercase text-emerald-700 hover:text-emerald-800 bg-emerald-50 hover:bg-emerald-100 px-3.5 py-2 border border-emerald-250 rounded-xl cursor-pointer transition-all"
-                    >
-                      <Send className="w-3 h-3 text-emerald-600" />
-                      Open Pre-Filled Draft ✉️
-                    </button>
-                  </div>
-                </div>
-
               </form>
               </div>
             ) : (
               <motion.div 
-                className="py-6 space-y-6 animate-fade-in text-left"
+                className="py-10 space-y-6 animate-fade-in text-center"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
               >
-                <div className="text-center space-y-3 pb-4 border-b border-zinc-100">
-                  <div className="w-14 h-14 rounded-full bg-emerald-50 border border-emerald-200 flex items-center justify-center mx-auto shadow">
-                    <CheckCircle2 className="w-7 h-7 text-[#61b000]" />
-                  </div>
-                  <h3 className="text-lg font-extrabold text-zinc-900 font-sans">Support Ticket Saved Successfully!</h3>
-                  <p className="text-xs text-zinc-650 max-w-md mx-auto leading-relaxed animate-pulse">
-                    Your parameters are logged inside Chester&apos;s central registry database under target domain <strong className="font-mono text-[#61b000] bg-zinc-50 border border-zinc-200 px-1.5 py-0.5 rounded">{contactForm.domain || "configuration"}</strong>.
+                <div className="w-16 h-16 rounded-full bg-emerald-50 border border-emerald-200 flex items-center justify-center mx-auto shadow-md">
+                  <CheckCircle2 className="w-8 h-8 text-[#61b000]" />
+                </div>
+                
+                <div className="space-y-2">
+                  <h3 className="text-xl font-extrabold text-zinc-900 font-sans">Support Ticket Recorded!</h3>
+                  <p className="text-sm text-zinc-650 max-w-md mx-auto leading-relaxed">
+                    Hello <strong className="text-zinc-900">{contactForm.name}</strong>, your support request has been logged successfully for domain <strong className="font-mono text-[#61b000] bg-zinc-50 border border-zinc-200 px-1.5 py-0.5 rounded">{contactForm.domain || "configuration"}</strong>.
                   </p>
                 </div>
 
-                {/* Highly prominent fail-safe direct mail hand-off section */}
-                <div className="bg-amber-50/70 border border-amber-200/80 rounded-2xl p-5 space-y-4">
-                  <div className="space-y-1">
-                    <span className="inline-flex items-center gap-1 bg-amber-100 text-amber-850 border border-amber-200 text-[9px] font-mono font-bold uppercase tracking-wider px-2 py-0.5 rounded">
-                      📬 1-CLICK DIRECT MAIL DELIVERABILITY HAND-OFF
-                    </span>
-                    <h4 className="text-xs font-extrabold text-[#964B00] font-sans">
-                      Bypass Sandboxes & Firewalls Instantly
-                    </h4>
-                    <p className="text-[11px] text-zinc-600 font-sans leading-normal">
-                      To guarantee Chester gets your message completely without relying on server-side APIs, launch your native mail client in 1-click! Everything you typed is pre-formatted and ready to send directly to <strong>info@emailapiguy.com</strong>.
-                    </p>
-                  </div>
-
-                  <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-1">
-                    <button
-                      type="button"
-                      onClick={() => {
-                        const subjectValue = `🚨 DNS DISTRESS TICKET: ${contactForm.domain || "Unknown Domain"} from ${contactForm.name || "Customer"}`;
-                        const bodyValue = `Support Request Details:\n\n` + 
-                                          `• Name: ${contactForm.name || "(Not entered)"}\n` +
-                                          `• Contact Email: ${contactForm.email || "(Not entered)"}\n` +
-                                          `• Broken Domain: ${contactForm.domain || "(Not entered)"}\n` +
-                                          `• Core Pain Category: ${contactForm.pains || "(Not entered)"}\n` +
-                                          `• Specific Messages / Notes:\n${contactForm.notes || "(None entered)"}\n\n` +
-                                          `Please help me audit my server reputation and align MX/SPF parameters.`;
-                        window.location.href = `mailto:info@emailapiguy.com?subject=${encodeURIComponent(subjectValue)}&body=${encodeURIComponent(bodyValue)}`;
-                      }}
-                      className="flex-grow inline-flex items-center justify-center gap-2 text-xs font-sans font-bold uppercase text-white bg-amber-600 hover:bg-amber-700 px-4 py-3 rounded-xl cursor-pointer shadow transition-all active:scale-[0.99]"
-                    >
-                      <Send className="w-3.5 h-3.5" />
-                      Dispatch Pre-Filled Mail ✉️
-                    </button>
-                    
-                    <div className="bg-white px-3 py-2 rounded-xl border border-amber-250 shadow-sm flex items-center justify-center shrink-0">
-                      <MungedEmail textClassName="text-[11px] font-bold font-mono text-amber-850" showIcon={false} showCopy={true} />
-                    </div>
-                  </div>
+                <div className="bg-zinc-50 border border-zinc-200 p-5 rounded-2xl max-w-sm mx-auto text-left space-y-3 shadow-sm">
+                  <p className="text-xs text-zinc-500 font-sans leading-relaxed">
+                    🚨 <strong>Inbox Deliverability Guarantee:</strong> To bypass firewalls and filters, we pre-formatted your native mail client (Gmail/Outlook/Apple Mail) to send this ticket directly to <strong className="text-zinc-900 font-mono">info@emailapiguy.com</strong>.
+                  </p>
+                  <p className="text-xs text-zinc-500 font-sans leading-relaxed">
+                    Please review and click <strong>Send</strong> in your mail application. If your agent did not trigger automatically, click below to try again:
+                  </p>
+                  
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const subjectValue = `🚨 DNS DISTRESS TICKET: ${contactForm.domain || "Unknown Domain"} from ${contactForm.name || "Customer"}`;
+                      const bodyValue = `Support Request Details:\n\n` + 
+                                        `• Name: ${contactForm.name || "(Not entered)"}\n` +
+                                        `• Contact Email: ${contactForm.email || "(Not entered)"}\n` +
+                                        `• Broken Domain: ${contactForm.domain || "(Not entered)"}\n` +
+                                        `• Core Pain Category: ${contactForm.pains || "(Not entered)"}\n` +
+                                        `• Specific Messages / Notes:\n${contactForm.notes || "(None entered)"}\n\n` +
+                                        `Please help me audit my server reputation and align MX/SPF parameters.`;
+                      window.location.href = `mailto:info@emailapiguy.com?subject=${encodeURIComponent(subjectValue)}&body=${encodeURIComponent(bodyValue)}`;
+                    }}
+                    className="w-full inline-flex items-center justify-center gap-2 text-xs font-sans font-bold uppercase text-white bg-zinc-950 hover:bg-zinc-850 py-3 rounded-xl cursor-pointer shadow transition-all duration-200"
+                  >
+                    <Send className="w-3.5 h-3.5 text-[#61b000]" />
+                    <span>Launch Pre-Filled Email ✉</span>
+                  </button>
                 </div>
-                
-                <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
+
+                <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
                   <Link
                     href="/"
-                    className="w-full sm:w-auto text-center bg-zinc-950 hover:bg-zinc-850 text-white text-[11px] font-bold uppercase tracking-wider px-6 py-3 rounded-xl shadow transition-transform hover:-translate-y-0.5"
+                    className="text-center bg-zinc-100 hover:bg-zinc-200 border border-zinc-200 text-zinc-700 text-xs font-bold uppercase tracking-wider px-6 py-3 rounded-xl shadow-sm transition-transform hover:-translate-y-0.5 cursor-pointer"
                   >
-                    Return to Portal Homepage
+                    Return to Home
                   </Link>
                   <button 
                     onClick={() => {
@@ -395,9 +352,9 @@ export default function ContactPage() {
                         notes: ""
                       });
                     }}
-                    className="text-[10px] font-mono font-bold text-zinc-500 hover:text-zinc-800 transition-colors border-b border-zinc-200"
+                    className="text-[11px] font-sans font-medium text-zinc-500 hover:text-zinc-800 transition-colors border-b border-zinc-200 pb-0.5 cursor-pointer"
                   >
-                    {"// Submit another support inquiry"}
+                    Submit Another Inquiry
                   </button>
                 </div>
               </motion.div>
@@ -500,175 +457,6 @@ export default function ContactPage() {
 
           </motion.div>
 
-        </motion.div>
-
-        {/* Developer Diagnostics Console */}
-        <motion.div 
-          className="mt-16 max-w-5xl mx-auto"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-        >
-          <div className="bg-zinc-950 text-zinc-350 border border-zinc-800 rounded-2xl overflow-hidden shadow-2xl font-mono">
-            
-            {/* Header tab/rail bar */}
-            <div className="bg-zinc-900 border-b border-zinc-800 px-6 py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-              <div className="flex items-center gap-3">
-                <span className="flex gap-1.5">
-                  <span className="w-2.5 h-2.5 rounded-full bg-rose-500/80 block" />
-                  <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80 block" />
-                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80 block" />
-                </span>
-                <span className="text-xs font-bold uppercase tracking-widest text-[#faf8f5]">
-                  🛠️ Developer Diagnostics Panel
-                </span>
-              </div>
-              
-              <div className="flex items-center gap-2">
-                <button 
-                  type="button" 
-                  onClick={() => {
-                    const refetch = async () => {
-                      setSubmissionsLoading(true);
-                      try {
-                        const res = await fetch("/api/contact");
-                        if (res.ok) {
-                          const data = await res.json();
-                          setSubmissions(data.submissions || []);
-                          setEmailConfigured(data.emailConfigured);
-                        }
-                      } catch (err) {
-                        console.error(err);
-                      } finally {
-                        setSubmissionsLoading(false);
-                      }
-                    };
-                    refetch();
-                  }}
-                  disabled={submissionsLoading}
-                  className="flex items-center gap-1.5 text-[10px] bg-zinc-800 hover:bg-zinc-700 active:scale-95 text-zinc-300 font-bold px-3 py-1.5 rounded-lg transition-all border border-zinc-700 cursor-pointer disabled:opacity-50"
-                >
-                  <RefreshCw className={`w-3 h-3 ${submissionsLoading ? "animate-spin" : ""}`} />
-                  REFETCH LOGS
-                </button>
-              </div>
-            </div>
-
-            {/* Diagnostic Alert Box */}
-            <div className="p-6 border-b border-zinc-800 bg-zinc-900/50 space-y-4 font-sans">
-              <div className="flex flex-col sm:flex-row items-start gap-4 p-4.5 rounded-xl border bg-zinc-950/80 border-cyan-500/30 text-cyan-250">
-                <div className="p-2 rounded-lg bg-cyan-500/10 border border-cyan-500/20 text-cyan-500 shrink-0">
-                  <ShieldCheck className="w-5 h-5" />
-                </div>
-                <div className="space-y-1.5 min-w-0 flex-1">
-                  <h4 className="text-xs font-bold text-cyan-400 uppercase tracking-wider font-mono">
-                    Zero-Friction Zero-Setup Delivery Protocol 🛡️
-                  </h4>
-                  <p className="text-xs text-zinc-400 leading-relaxed font-sans">
-                    We completely purged third-party API requirements (such as Resend or automated relays) to eliminate email delivery failure points entirely. Submissions now operate via two pristine channels:
-                  </p>
-                  <div className="text-[11px] text-zinc-400 space-y-2 pt-1 font-sans">
-                    <p>
-                      <strong>1. Sandboxed Database Log:</strong> Submitting a form writes immediately to the local workspace ledger <code className="text-cyan-305 bg-zinc-900 px-1 py-0.5 border border-zinc-800 rounded font-mono">submissions.json</code>, rendered in real-time in the panel underneath.
-                    </p>
-                    <p>
-                      <strong>2. Premium Native Mail Handoff:</strong> Success modals offer a pre-filled client launch action. This instantly populates your own email browser/app with Chester&apos;s target address, subject lines, and form parameters. Click send and receive it perfectly!
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Submissions List */}
-            <div className="p-6 space-y-4">
-              <div className="flex items-center justify-between flex-wrap gap-2">
-                <span className="text-xs font-bold uppercase tracking-widest text-zinc-400">
-                  📁 Captured Local Database Records ({submissions.length})
-                </span>
-                
-                <div className="flex items-center gap-1.5 text-[10px] text-zinc-500 font-sans">
-                  <span className={`w-2 h-2 rounded-full ${emailConfigured ? "bg-emerald-500 animate-pulse" : "bg-amber-500 animate-pulse"}`} />
-                  <span>{emailConfigured ? "Live Mail Active" : "Local Sandbox/Simulation Mode"}</span>
-                </div>
-              </div>
-
-              {submissions.length === 0 ? (
-                <div className="border border-dashed border-zinc-800 rounded-xl p-8 text-center space-y-3 bg-zinc-900/10 font-sans">
-                  <span className="text-2xl block">⚙️</span>
-                  <p className="text-xs text-zinc-500 max-w-sm mx-auto">
-                    No local contact submissions recorded yet in <code className="text-zinc-400 font-mono bg-zinc-900 px-1 py-0.5 border border-zinc-800 rounded">submissions.json</code>. Try submitting a form above or clicking the automatic tester helper!
-                  </p>
-                </div>
-              ) : (
-                <div className="space-y-4 max-h-96 overflow-y-auto pr-1">
-                  {submissions.slice().reverse().map((sub, idx) => (
-                    <div 
-                      key={sub.id || idx}
-                      className="border border-zinc-800/80 bg-zinc-900/30 rounded-xl p-4 space-y-3 hover:bg-zinc-900/50 transition-colors pointer-events-auto"
-                    >
-                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-zinc-800 pb-2">
-                        <div className="flex items-center gap-2">
-                          <span className="w-1.5 h-1.5 rounded-full bg-orange-500 animate-pulse" />
-                          <strong className="text-xs text-zinc-200 font-sans">{sub.name}</strong>
-                          <span className="text-zinc-500 bg-zinc-900 border border-zinc-805 text-[9px] px-1.5 py-0.5 rounded font-bold font-mono">CONTACT_TICKET</span>
-                        </div>
-                        <span className="text-[10px] text-zinc-500">{new Date(sub.timestamp).toLocaleString()}</span>
-                      </div>
-                      
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-                        <div className="space-y-1">
-                          <span className="text-[9px] uppercase font-bold text-zinc-500 block">📬 Corporate Email</span>
-                          <a href={`mailto:${sub.email}`} className="text-amber-500 hover:underline font-mono">{sub.email}</a>
-                        </div>
-                        <div className="space-y-1">
-                          <span className="text-[9px] uppercase font-bold text-zinc-500 block">🌐 Target Domain</span>
-                          <span className="text-zinc-300 bg-zinc-950 px-1.5 py-0.5 border border-zinc-800/60 rounded inline-block font-mono text-[11px]">{sub.domain || "No domain specified"}</span>
-                        </div>
-                      </div>
-
-                      <div className="grid grid-cols-1 gap-3 text-xs">
-                        <div className="space-y-1 bg-zinc-950 p-2.5 rounded-lg border border-zinc-800/40">
-                          <span className="text-[9px] uppercase font-bold text-amber-500 block">⚠️ Client Issue Category</span>
-                          <span className="text-zinc-300 font-sans block pt-0.5 text-xs">{sub.pains || "Undergoing diagnosis"}</span>
-                        </div>
-                        
-                        {sub.notes && (
-                          <div className="space-y-1 bg-zinc-950 p-2.5 rounded-lg border border-zinc-800/40">
-                            <span className="text-[9px] uppercase font-bold text-zinc-500 block">✏️ Core Feedback Notes</span>
-                            <p className="text-zinc-400 font-sans whitespace-pre-wrap leading-relaxed pt-0.5 text-[11.5px]">{sub.notes}</p>
-                          </div>
-                        )}
-
-                        {sub.emailStatus && (
-                          <div className="space-y-1.5 bg-zinc-950 p-3 rounded-lg border border-zinc-800/40 font-mono text-[10.5px]">
-                            <span className="text-[9px] uppercase font-bold text-[#faf8f5] block tracking-wider">📬 RESEND DISPATCH DIAGNOSTICS</span>
-                            <div className="flex items-center gap-2 pt-1 font-sans">
-                              <span className={`w-2 h-2 rounded-full ${sub.emailStatus.success ? "bg-emerald-500 animate-pulse" : "bg-rose-500 animate-pulse"}`} />
-                              <span className="font-bold text-zinc-200">{sub.emailStatus.success ? "DELIVERED / ACCEPTED" : "FLAGGED / BLOCKED"}</span>
-                              <span className="text-zinc-500 text-[9px] bg-zinc-900 border border-zinc-800 px-1.5 py-0.5 rounded">
-                                {sub.emailStatus.simulated ? "SANDBOX SIMULATION" : "LIVE RESEND NODE"}
-                              </span>
-                            </div>
-                            <p className="text-zinc-400 font-sans leading-relaxed text-[11px] pt-1">{sub.emailStatus.message}</p>
-                            
-                            {sub.emailStatus.errorDetails && (
-                              <div className="mt-2 pt-2 border-t border-zinc-900">
-                                <span className="text-[8.5px] uppercase font-bold text-rose-400 block tracking-wider">RAW RESEND ERROR PAYLOAD</span>
-                                <pre className="text-[10px] text-rose-300/80 bg-zinc-950 border border-zinc-900 p-2.5 rounded-lg mt-1 overflow-x-auto whitespace-pre-wrap leading-normal font-mono select-all max-h-48">
-                                  {JSON.stringify(sub.emailStatus.errorDetails, null, 2)}
-                                </pre>
-                              </div>
-                            )}
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-
-          </div>
         </motion.div>
 
       </div>
