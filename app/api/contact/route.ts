@@ -31,15 +31,9 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Save submission locally
-    const submission = await saveSubmission({
-      type: "contact",
-      name,
-      email,
-      domain,
-      pains,
-      notes,
-    });
+    // Pre-generate ID and timestamp to include in email template
+    const id = `sub_${Date.now()}_${Math.random().toString(36).substring(2, 11)}`;
+    const timestamp = new Date().toISOString();
 
     // Send Email
     const emailSubject = `🚨 DNS DISTRESS TICKET: ${domain || "Unknown Domain"} from ${name}`;
@@ -70,12 +64,25 @@ export async function POST(req: NextRequest) {
         </div>
 
         <div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid #e4e4e7; font-size: 11px; text-align: center; color: #71717a; font-family: monospace;">
-          Ticket ID: ${submission.id} • Recorded: ${submission.timestamp}
+          Ticket ID: ${id} • Recorded: ${timestamp}
         </div>
       </div>
     `;
 
     const emailStatus = await sendEmail({ subject: emailSubject, html: emailHtml });
+
+    // Save submission locally
+    const submission = await saveSubmission({
+      id,
+      timestamp,
+      type: "contact",
+      name,
+      email,
+      domain,
+      pains,
+      notes,
+      emailStatus,
+    });
 
     return NextResponse.json({
       success: true,

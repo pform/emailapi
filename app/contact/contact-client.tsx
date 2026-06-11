@@ -544,6 +544,29 @@ export default function ContactPage() {
                             <p className="text-zinc-400 font-sans whitespace-pre-wrap leading-relaxed pt-0.5 text-[11.5px]">{sub.notes}</p>
                           </div>
                         )}
+
+                        {sub.emailStatus && (
+                          <div className="space-y-1.5 bg-zinc-950 p-3 rounded-lg border border-zinc-800/40 font-mono text-[10.5px]">
+                            <span className="text-[9px] uppercase font-bold text-[#faf8f5] block tracking-wider">📬 RESEND DISPATCH DIAGNOSTICS</span>
+                            <div className="flex items-center gap-2 pt-1 font-sans">
+                              <span className={`w-2 h-2 rounded-full ${sub.emailStatus.success ? "bg-emerald-500 animate-pulse" : "bg-rose-500 animate-pulse"}`} />
+                              <span className="font-bold text-zinc-200">{sub.emailStatus.success ? "DELIVERED / ACCEPTED" : "FLAGGED / BLOCKED"}</span>
+                              <span className="text-zinc-500 text-[9px] bg-zinc-900 border border-zinc-800 px-1.5 py-0.5 rounded">
+                                {sub.emailStatus.simulated ? "SANDBOX SIMULATION" : "LIVE RESEND NODE"}
+                              </span>
+                            </div>
+                            <p className="text-zinc-400 font-sans leading-relaxed text-[11px] pt-1">{sub.emailStatus.message}</p>
+                            
+                            {sub.emailStatus.errorDetails && (
+                              <div className="mt-2 pt-2 border-t border-zinc-900">
+                                <span className="text-[8.5px] uppercase font-bold text-rose-400 block tracking-wider">RAW RESEND ERROR PAYLOAD</span>
+                                <pre className="text-[10px] text-rose-300/80 bg-zinc-950 border border-zinc-900 p-2.5 rounded-lg mt-1 overflow-x-auto whitespace-pre-wrap leading-normal font-mono select-all max-h-48">
+                                  {JSON.stringify(sub.emailStatus.errorDetails, null, 2)}
+                                </pre>
+                              </div>
+                            )}
+                          </div>
+                        )}
                       </div>
                     </div>
                   ))}

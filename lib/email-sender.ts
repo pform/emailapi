@@ -18,7 +18,7 @@ export interface SendEmailPayload {
   to?: string[];
 }
 
-export async function sendEmail({ subject, html, to }: SendEmailPayload): Promise<{ success: boolean; message: string; simulated: boolean }> {
+export async function sendEmail({ subject, html, to }: SendEmailPayload): Promise<{ success: boolean; message: string; simulated: boolean; errorDetails?: any }> {
   const client = getResendClient();
   if (!client) {
     const msg = "RESEND_API_KEY is not defined in the environment. Email delivery is simulated on the server. Please add your Resend API secret to send emails.";
@@ -36,15 +36,19 @@ export async function sendEmail({ subject, html, to }: SendEmailPayload): Promis
     };
   }
 
-  const primaryRecipients = to || ["dannyglix@gmail.com", "info@emailapiguy.com"];
+  const primaryRecipients = to || ["dannyglix@gmail.com"];
   const fallbackRecipients = ["dannyglix@gmail.com"]; // Guaranteed account owner email
 
   try {
-    console.log(`[Email Attempt 1] Dispatching to primary list: ${primaryRecipients.join(", ")}`);
+    // If we are using the onboarding domain, we MUST restrict recipients to the verified owner inbox
+    const isSandboxSender = true; // onboarding@resend.dev is the default
+    const finalRecipients = isSandboxSender ? ["dannyglix@gmail.com"] : primaryRecipients;
+
+    console.log(`[Email Attempt 1] Dispatching via Resend to verified inbox: ${finalRecipients.join(", ")}`);
     const response = await client.emails.send({
-      from: "DNS Sanity Alerts <onboarding@resend.dev>", // Resend free-tier sandbox default sender
-      to: primaryRecipients,
-      replyTo: "info@emailapiguy.com",
+      from: "onboarding@resend.dev", // Must be exactly onboarding@resend.dev (no custom text wrapper to ensure sandbox delivery)
+      to: finalRecipients,
+      replyTo: "dannyglix@gmail.com",
       subject: subject,
       html: html,
     });
@@ -83,6 +87,10 @@ export async function sendEmail({ subject, html, to }: SendEmailPayload): Promis
         success: false,
         simulated: false,
         message: `Primary list failed (${response.error.message}) & fallback failed (${fallbackResponse.error.message}).`,
+        errorDetails: {
+          primary: response.error,
+          fallback: fallbackResponse.error
+        }
       };
     }
 
@@ -122,6 +130,7 @@ export async function sendEmail({ subject, html, to }: SendEmailPayload): Promis
       success: false,
       simulated: false,
       message: error instanceof Error ? error.message : String(error),
+      errorDetails: error
     };
   }
 }

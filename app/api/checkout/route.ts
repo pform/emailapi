@@ -14,16 +14,9 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Save submission locally
-    const submission = await saveSubmission({
-      type: "checkout",
-      name,
-      email,
-      domain,
-      productId,
-      productName,
-      productPrice,
-    });
+    // Pre-generate ID and timestamp to include in email template
+    const id = `sub_${Date.now()}_${Math.random().toString(36).substring(2, 11)}`;
+    const timestamp = new Date().toISOString();
 
     // Send Email
     const emailSubject = `⚡ SERVICE PURCHASE REQUEST: ${productName} by ${name}`;
@@ -54,12 +47,26 @@ export async function POST(req: NextRequest) {
         </div>
 
         <div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid #e4e4e7; font-size: 11px; text-align: center; color: #71717a; font-family: monospace;">
-          Invoice Order ID: ${submission.id} • Logged At: ${submission.timestamp}
+          Invoice Order ID: ${id} • Logged At: ${timestamp}
         </div>
       </div>
     `;
 
     const emailStatus = await sendEmail({ subject: emailSubject, html: emailHtml });
+
+    // Save submission locally
+    const submission = await saveSubmission({
+      id,
+      timestamp,
+      type: "checkout",
+      name,
+      email,
+      domain,
+      productId,
+      productName,
+      productPrice,
+      emailStatus,
+    });
 
     return NextResponse.json({
       success: true,

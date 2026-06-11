@@ -13,14 +13,20 @@ export interface Submission {
   productPrice?: string;
   pains?: string;
   notes?: string;
+  emailStatus?: {
+    success: boolean;
+    message: string;
+    simulated: boolean;
+    errorDetails?: any;
+  };
 }
 
 const STORAGE_PATH = path.join(process.cwd(), "submissions.json");
 
-export async function saveSubmission(data: Omit<Submission, "id" | "timestamp">): Promise<Submission> {
+export async function saveSubmission(data: Omit<Submission, "id" | "timestamp"> & { id?: string; timestamp?: string }): Promise<Submission> {
   const newSubmission: Submission = {
-    id: `sub_${Date.now()}_${Math.random().toString(36).substring(2, 11)}`,
-    timestamp: new Date().toISOString(),
+    id: data.id || `sub_${Date.now()}_${Math.random().toString(36).substring(2, 11)}`,
+    timestamp: data.timestamp || new Date().toISOString(),
     ...data,
   };
 
