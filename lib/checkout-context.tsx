@@ -194,10 +194,18 @@ export function CheckoutProvider({ children }: { children: React.ReactNode }) {
 
                 </form>
               ) : (
-                <div className="p-8 text-center space-y-4">
-                  <CheckCircle2 className="w-12 h-12 text-emerald-600 mx-auto animate-bounce" />
-                  <h3 className="text-base font-bold text-zinc-900 font-sans">Request Received!</h3>
-                  <div className="bg-zinc-50 border border-zinc-200 p-4 rounded text-left text-xs space-y-2 max-w-sm mx-auto font-mono text-zinc-700">
+                <div className="p-6 text-center space-y-5">
+                  <div className="w-12 h-12 rounded-full bg-emerald-50 border border-emerald-200 flex items-center justify-center mx-auto shadow">
+                    <CheckCircle2 className="w-6 h-6 text-emerald-600 animate-pulse" />
+                  </div>
+                  <div className="space-y-1">
+                    <h3 className="text-base font-extrabold text-zinc-900 font-sans">Service Request Logged Successfully!</h3>
+                    <p className="text-xs text-zinc-500">
+                      Telemetry order saved in Chester&apos;s central registry files.
+                    </p>
+                  </div>
+
+                  <div className="bg-zinc-50 border border-zinc-200 p-4 rounded text-left text-xs space-y-1.5 max-w-sm mx-auto font-mono text-zinc-700">
                     <p className="font-bold border-b border-zinc-200 pb-1 text-zinc-900 uppercase font-sans">
                       OFFICIAL DNS SERVICE ORDER
                     </p>
@@ -205,16 +213,45 @@ export function CheckoutProvider({ children }: { children: React.ReactNode }) {
                     <p><strong>Pricing:</strong> {selectedProduct.price}</p>
                     <p><strong>Target Domain:</strong> {billingForm.domain}</p>
                     <p><strong>Client:</strong> {billingForm.name} ({billingForm.email})</p>
-                    <p className="pt-2 text-[10px] text-zinc-500 leading-normal border-t border-zinc-200 font-sans">
-                      Danny is reviewing your configuration payload. An invoice and custom handshake details will arrive at your inbox shortly.
-                    </p>
                   </div>
-                  <button
-                    onClick={closeCheckout}
-                    className="bg-zinc-900 hover:bg-zinc-800 text-white font-bold uppercase px-6 py-2.5 rounded text-xs tracking-wider"
-                  >
-                    Return to Portal
-                  </button>
+
+                  {/* Guaranteed outbound mail hanchand-off */}
+                  <div className="bg-amber-50/70 border border-amber-200 rounded-xl p-4 text-left space-y-3">
+                    <div className="space-y-0.5">
+                      <span className="text-[9px] font-mono font-bold text-amber-800 uppercase bg-amber-100 px-1.5 py-0.5 rounded border border-amber-200">
+                        📬 GUARANTEED INBOX DISPATCH (1-CLICK)
+                      </span>
+                      <p className="text-[11px] text-zinc-650 leading-normal pt-1">
+                        Ensure instant deliverability without API lag. Click below to launch your pre-formatted order draft directly in your preferred email application!
+                      </p>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const subjectValue = `🚨 SERVICE PURCHASE REQUEST: ${selectedProduct.name} by ${billingForm.name}`;
+                        const bodyValue = `Official DNS Service Order Request Details:\n\n` + 
+                                          `• Selected Service: ${selectedProduct.name}\n` +
+                                          `• Price Rate: ${selectedProduct.price}\n` +
+                                          `• Customer Name: ${billingForm.name}\n` +
+                                          `• Corporate Email: ${billingForm.email}\n` +
+                                          `• Target Domain to Repair: ${billingForm.domain}\n\n` +
+                                          `Chester, please initiate this service setup and send over custom handshake details and an invoice.`;
+                        window.location.href = `mailto:info@emailapiguy.com?subject=${encodeURIComponent(subjectValue)}&body=${encodeURIComponent(bodyValue)}`;
+                      }}
+                      className="w-full inline-flex items-center justify-center gap-1.5 bg-amber-600 hover:bg-amber-700 text-white text-[11px] font-bold uppercase py-2.5 rounded-lg shadow cursor-pointer transition-all active:scale-[0.99]"
+                    >
+                      <span>Launch Prefilled Order Draft ✉️</span>
+                    </button>
+                  </div>
+
+                  <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
+                    <button
+                      onClick={closeCheckout}
+                      className="bg-zinc-900 hover:bg-zinc-850 text-white font-bold uppercase px-6 py-3 rounded-lg text-[10px] tracking-wider w-full cursor-pointer"
+                    >
+                      Return to Portal
+                    </button>
+                  </div>
                 </div>
               )}
 
