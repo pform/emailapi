@@ -81,12 +81,6 @@ export default function Navbar() {
             >
               Contact Us
             </Link>
-            <Link 
-              href="mailto:info@emailapiguy.com?subject=Inquiry%20to%20Email%20API%20Guy"
-              className="bg-[#1d4ed8] hover:bg-[#1e40af] text-white text-xs font-bold uppercase px-4 py-2.5 rounded border border-blue-700 transition-all tracking-wider"
-            >
-              Email Us ✉️
-            </Link>
           </div>
 
           {/* Mobile menu toggle */}
