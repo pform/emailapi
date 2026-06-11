@@ -17,6 +17,7 @@ import {
   AlertTriangle 
 } from "lucide-react";
 import dannyExpertAvatar from "@/src/assets/images/danny_expert_avatar_1781000326099.png";
+import MungedEmail from "@/components/MungedEmail";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -167,7 +168,23 @@ export default function ContactPage() {
             <div className="absolute top-0 right-0 w-32 h-32 bg-orange-500/5 rounded-full pointer-events-none" />
             
             {!formSubmitted ? (
-              <form onSubmit={handleContactSubmit} className="space-y-6 relative z-10">
+              <div className="space-y-6 relative z-10 animate-fade-in" id="contact-form-wrapper-block">
+                {/* Prominent high-visibility Munged direct email box */}
+                <div className="bg-amber-50/80 border border-amber-200 rounded-2xl p-4.5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4" id="prominent-direct-email-ref">
+                  <div className="space-y-1">
+                    <span className="inline-flex items-center gap-1.5 text-[10px] uppercase font-mono font-bold tracking-wider text-amber-850 px-2.5 py-0.5 bg-amber-100 rounded border border-amber-200">
+                      ⚡ DIRECT CONTACT ALTERNATIVE
+                    </span>
+                    <p className="text-xs text-zinc-600 font-sans leading-relaxed pt-1">
+                      Prefer direct communication? Skip the form entirely and reach the specialist at:
+                    </p>
+                  </div>
+                  <div className="bg-white px-3.5 py-2 rounded-xl border border-amber-200/80 shadow-sm shrink-0">
+                    <MungedEmail textClassName="text-xs font-bold text-amber-800 hover:text-amber-600 font-mono" showIcon={false} showCopy={true} />
+                  </div>
+                </div>
+
+                <form onSubmit={handleContactSubmit} className="space-y-6">
                 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div className="space-y-1.5 align-middle">
@@ -275,7 +292,35 @@ export default function ContactPage() {
                   </button>
                 </div>
 
+                <div className="pt-5 border-t border-dashed border-zinc-200 mt-6 text-center space-y-3">
+                  <p className="text-[11px] text-zinc-500 font-sans leading-relaxed">
+                    💡 <strong>Delivery Backup Alternative:</strong> If automated sandbox mail dispatch is currently restricted in this local preview environment, you can send these support details to the consultant directly in one click!
+                  </p>
+                  <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+                    <MungedEmail textClassName="text-xs text-amber-700 font-bold" iconClassName="w-3.5 h-3.5" showCopy={true} />
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const subjectValue = `🚨 DNS DISTRESS TICKET: ${contactForm.domain || "Unknown Domain"} from ${contactForm.name || "Customer"}`;
+                        const bodyValue = `Support Request Details:\n\n` + 
+                                          `• Name: ${contactForm.name || "(Not entered)"}\n` +
+                                          `• Contact Email: ${contactForm.email || "(Not entered)"}\n` +
+                                          `• Broken Domain: ${contactForm.domain || "(Not entered)"}\n` +
+                                          `• Core Pain Category: ${contactForm.pains || "(Not entered)"}\n` +
+                                          `• Specific Messages / Notes:\n${contactForm.notes || "(None entered)"}\n\n` +
+                                          `Please help me audit my server reputation and align MX/SPF parameters.`;
+                        window.location.href = `mailto:info@emailapiguy.com?subject=${encodeURIComponent(subjectValue)}&body=${encodeURIComponent(bodyValue)}`;
+                      }}
+                      className="inline-flex items-center gap-1.5 text-[10px] font-sans font-bold uppercase text-emerald-700 hover:text-emerald-800 bg-emerald-50 hover:bg-emerald-100 px-3.5 py-2 border border-emerald-250 rounded-xl cursor-pointer transition-all"
+                    >
+                      <Send className="w-3 h-3 text-emerald-600" />
+                      Open Pre-Filled Draft ✉️
+                    </button>
+                  </div>
+                </div>
+
               </form>
+              </div>
             ) : (
               <motion.div 
                 className="text-center py-10 space-y-5 animate-fade-in"
@@ -329,16 +374,15 @@ export default function ContactPage() {
                     referrerPolicy="no-referrer"
                   />
                 </div>
-                <div className="space-y-0.5 pointer-events-none">
+                <div className="space-y-0.5">
                   <span className="text-[10px] font-mono font-bold text-[#61b000] uppercase tracking-wider block">
                     CHIEF DELIVERABILITY CONSULTANT
                   </span>
                   <h3 className="text-base font-extrabold text-zinc-900 font-sans">
                     Chester Carlson
                   </h3>
-                  <div className="flex items-center gap-1.5 text-xs text-zinc-500 font-mono">
-                    <Mail className="w-3.5 h-3.5 text-zinc-400" />
-                    <span>info@emailapiguy.com</span>
+                  <div className="flex items-center gap-1.5 text-xs text-zinc-500 font-mono mt-1">
+                    <MungedEmail textClassName="text-xs text-zinc-700 font-bold" iconClassName="w-3.5 h-3.5" showCopy={true} />
                   </div>
                 </div>
               </div>
