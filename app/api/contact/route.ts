@@ -1,6 +1,23 @@
 import { NextRequest, NextResponse } from "next/server";
-import { saveSubmission } from "@/lib/data-store";
+import { saveSubmission, getSubmissions } from "@/lib/data-store";
 import { sendEmail } from "@/lib/email-sender";
+
+export async function GET() {
+  try {
+    const submissions = await getSubmissions();
+    return NextResponse.json({
+      success: true,
+      submissions,
+      emailConfigured: !!(process.env.RESEND_API_KEY && process.env.RESEND_API_KEY.trim() !== "" && !process.env.RESEND_API_KEY.startsWith("MY_"))
+    });
+  } catch (err) {
+    console.error("Error reading contact submissions:", err);
+    return NextResponse.json(
+      { error: "Failed to retrieve local submissions payload." },
+      { status: 500 }
+    );
+  }
+}
 
 export async function POST(req: NextRequest) {
   try {

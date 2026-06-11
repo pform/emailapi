@@ -1,8 +1,20 @@
 import type { Metadata } from 'next';
+import { Plus_Jakarta_Sans, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 import { CheckoutProvider } from "@/lib/checkout-context";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+
+const plusJakartaSans = Plus_Jakarta_Sans({
+  subsets: ['latin'],
+  variable: '--font-sans',
+  weight: ['400', '500', '600', '700', '800'],
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  variable: '--font-mono',
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://emailapiguy.com'),
@@ -60,8 +72,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <body className="font-sans antialiased bg-zinc-50 text-zinc-900 selection:bg-lime-400 selection:text-zinc-950 min-h-screen flex flex-col" suppressHydrationWarning>
+    <html lang="en" className={`scroll-smooth ${plusJakartaSans.variable} ${jetbrainsMono.variable}`}>
+      <body className="font-sans antialiased bg-zinc-50 text-zinc-900 selection:bg-amber-100 selection:text-amber-900 min-h-screen flex flex-col" suppressHydrationWarning>
         <CheckoutProvider>
           <Navbar />
           <main className="flex-grow relative">

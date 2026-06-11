@@ -1,17 +1,66 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: Arial, Helvetica, sans-serif;
-  --font-display: Arial, Helvetica, sans-serif;
-  --font-mono: Arial, monospace;
+  --font-sans: var(--font-sans), system-ui, sans-serif;
+  --font-mono: var(--font-mono), monospace;
+  
+  /* Primary warm professional deep blues & welcoming amber accents */
+  --color-primary-50: #f4f6fa;
+  --color-primary-100: #e2e8f1;
+  --color-primary-200: #cbd5e1;
+  --color-primary-300: #94a3b8;
+  --color-primary-400: #64748b;
+  --color-primary-500: #1e3a8a; /* Warm deep royal blue */
+  --color-primary-600: #1d4ed8; /* Vibrant welcoming sapphire */
+  --color-primary-700: #1d4ed8;
+  --color-primary-800: #0f172a;
+  --color-primary-900: #0f172a;
+
+  --color-accent-blue: #0f265c;
+  --color-brand-blue: #0f265c;
+  --color-amber-500: #f59e0b;
+  --color-amber-600: #d97706;
 }
 
 @layer base {
   body {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: var(--font-sans);
+    background-color: #fafbfc;
+    color: #1e293b;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
   
   h1, h2, h3, h4, h5, h6 {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: var(--font-sans);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+  }
+
+  /* Form & inputs smooth outline transition */
+  input, textarea, select {
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: #1d4ed8;
+    box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.15);
+  }
+  
+  /* Scrollbar custom polished human aesthetic */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #f1f3f5;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px;
+    transition: background 0.2s;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
   }
 }

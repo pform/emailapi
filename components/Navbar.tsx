@@ -44,7 +44,7 @@ export default function Navbar() {
             </div>
             <div className="flex flex-col select-none">
               <div className="flex items-baseline leading-none">
-                <span className="font-extrabold text-xl tracking-tight text-[#61b000]">EMAIL</span>
+                <span className="font-extrabold text-xl tracking-tight text-[#1d4ed8]">EMAIL</span>
                 <span className="font-extrabold text-xl tracking-tight text-zinc-950">API</span>
               </div>
               <span className="text-[10px] text-zinc-500 font-bold uppercase tracking-widest leading-none mt-0.5">guy</span>
@@ -57,33 +57,33 @@ export default function Navbar() {
               onMouseEnter={handleMouseEnter}
               onClick={() => setMegamenuOpen(!megamenuOpen)}
               className={`text-sm font-bold flex items-center gap-1 transition-colors font-sans ${
-                megamenuOpen ? 'text-[#61b000]' : 'text-zinc-800 hover:text-[#61b000]'
+                megamenuOpen ? 'text-[#1d4ed8]' : 'text-zinc-800 hover:text-[#1d4ed8]'
               }`}
             >
               Services
-              <ChevronDown className={`w-4 h-4 transition-transform ${megamenuOpen ? 'rotate-180 text-[#61b000]' : ''}`} />
+              <ChevronDown className={`w-4 h-4 transition-transform ${megamenuOpen ? 'rotate-180 text-[#1d4ed8]' : ''}`} />
             </button>
             <Link 
               href="/about" 
-              className={`text-sm font-bold transition-colors ${pathname === "/about" ? "text-[#61b000]" : "text-zinc-800 hover:text-[#61b000]"}`}
+              className={`text-sm font-bold transition-colors ${pathname === "/about" ? "text-[#1d4ed8]" : "text-zinc-800 hover:text-[#1d4ed8]"}`}
             >
               About Chester
             </Link>
             <Link 
               href="/pricing"
-              className={`text-sm font-bold transition-colors ${pathname === "/pricing" ? "text-[#61b000]" : "text-zinc-800 hover:text-[#61b000]"}`}
+              className={`text-sm font-bold transition-colors ${pathname === "/pricing" ? "text-[#1d4ed8]" : "text-zinc-800 hover:text-[#1d4ed8]"}`}
             >
               Cost Estimator
             </Link>
             <Link 
               href="/contact"
-              className={`text-sm font-bold transition-colors ${pathname === "/contact" ? "text-rose-600" : "text-zinc-800 hover:text-rose-600"}`}
+              className={`text-sm font-bold transition-colors ${pathname === "/contact" ? "text-amber-600" : "text-zinc-800 hover:text-amber-600"}`}
             >
               Contact Us
             </Link>
             <Link 
               href="/contact"
-              className="bg-[#61b000] hover:bg-[#529400] text-white text-xs font-bold uppercase px-4 py-2.5 rounded border border-emerald-600 transition-all tracking-wider"
+              className="bg-[#1d4ed8] hover:bg-[#1e40af] text-white text-xs font-bold uppercase px-4 py-2.5 rounded border border-blue-700 transition-all tracking-wider"
             >
               Get in Touch ✉️
             </Link>
@@ -119,7 +119,7 @@ export default function Navbar() {
               {/* Column 1 */}
               <div className="space-y-3">
                 <div className="flex items-center space-x-2 text-zinc-900 border-b border-zinc-300 pb-1">
-                  <Cpu className="w-4 h-4 text-[#61b000]" />
+                  <Cpu className="w-4 h-4 text-[#1d4ed8]" />
                   <span className="text-xs uppercase tracking-wider font-bold">One-Time Implementations</span>
                 </div>
                 <div className="space-y-2 text-sm">

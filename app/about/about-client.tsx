@@ -61,8 +61,8 @@ export default function AboutPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <span className="inline-flex items-center gap-1.5 bg-lime-50 border border-lime-200 text-lime-700 text-xs font-mono font-black uppercase tracking-widest px-3.5 py-1.5 rounded-full shadow-sm">
-            <Sparkles className="w-3.5 h-3.5 text-[#61b000] animate-spin" />
+          <span className="inline-flex items-center gap-1.5 bg-amber-500/10 border border-amber-500/30 text-amber-500 text-xs font-mono font-black uppercase tracking-widest px-3.5 py-1.5 rounded-full shadow-sm">
+            <Sparkles className="w-3.5 h-3.5 text-amber-500 animate-spin" />
             THE ORIGINAL RECORD ALIGNMENT GUILD
           </span>
           <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-zinc-900 leading-tight">
@@ -84,10 +84,10 @@ export default function AboutPage() {
           {/* Left Column: Portrait & Stats (4 columns) */}
           <motion.div className="lg:col-span-4 space-y-6" variants={itemVariants}>
             <div className="bg-gradient-to-br from-zinc-50 via-white to-orange-50/10 border-2 border-zinc-250 p-6 rounded-2xl shadow-lg relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-24 h-24 bg-[#61b000]/5 rounded-full pointer-events-none" />
+              <div className="absolute top-0 right-0 w-24 h-24 bg-amber-500/5 rounded-full pointer-events-none" />
               
               <div className="text-center space-y-4">
-                <div className="relative w-36 h-36 rounded-full border-4 border-[#61b000] p-1 shadow-lg mx-auto overflow-hidden bg-white">
+                <div className="relative w-36 h-36 rounded-full border-4 border-amber-500 p-1 shadow-lg mx-auto overflow-hidden bg-white">
                   <Image 
                     src={dannyExpertAvatar}
                     alt="Chester Carlson - Chief Deliverability Officer portrait"
@@ -99,7 +99,7 @@ export default function AboutPage() {
                 
                 <div>
                   <h3 className="text-lg font-black text-zinc-900 font-sans">Chester Carlson</h3>
-                  <span className="text-[10px] font-mono font-extrabold text-[#61b000] bg-lime-50 border border-lime-200 px-3 py-1 rounded-full uppercase tracking-wider inline-block mt-1">
+                  <span className="text-[10px] font-mono font-extrabold text-amber-500 bg-amber-500/10 border border-amber-500/30 px-3 py-1 rounded-full uppercase tracking-wider inline-block mt-1">
                     Chief DNS Rescue Officer
                   </span>
                 </div>
@@ -127,7 +127,7 @@ export default function AboutPage() {
               <p className="text-xs italic text-zinc-350 relative z-10 leading-relaxed font-sans mb-3">
                 &ldquo;Email deliverability isn&apos;t a game of automatic wizards. An email is just a digital piece of paper. If you don&apos;t align the nameserver charge correctly, the paper falls off the drum.&rdquo;
               </p>
-              <span className="text-[10px] font-mono uppercase tracking-widest text-[#61b000] font-black block">
+              <span className="text-[10px] font-mono uppercase tracking-widest text-amber-500 font-black block">
                 — CHESTER&apos;S COGNITIVE PROTOCOL
               </span>
             </div>

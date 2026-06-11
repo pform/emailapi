@@ -17,11 +17,11 @@ export default function Footer() {
         </div>
 
         <div className="flex space-x-6 text-xs text-zinc-500 font-sans">
-          <Link href="/" className="hover:text-[#61b000] transition-colors">Home</Link>
-          <Link href="/about" className="hover:text-[#61b000] transition-colors">About Chester</Link>
-          <Link href="/services" className="hover:text-[#61b000] transition-colors">Services</Link>
-          <Link href="/pricing" className="hover:text-[#61b000] transition-colors">Cost Estimator</Link>
-          <Link href="/contact" className="hover:text-rose-600 transition-colors">Contact</Link>
+          <Link href="/" className="hover:text-[#1d4ed8] transition-colors">Home</Link>
+          <Link href="/about" className="hover:text-[#1d4ed8] transition-colors">About Chester</Link>
+          <Link href="/services" className="hover:text-[#1d4ed8] transition-colors">Services</Link>
+          <Link href="/pricing" className="hover:text-[#1d4ed8] transition-colors">Cost Estimator</Link>
+          <Link href="/contact" className="hover:text-amber-600 transition-colors">Contact</Link>
         </div>
 
       </div>

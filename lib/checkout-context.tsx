@@ -99,8 +99,8 @@ export function CheckoutProvider({ children }: { children: React.ReactNode }) {
               {/* Header */}
               <div className="bg-zinc-50 border-b border-zinc-200 p-4 flex justify-between items-center">
                 <div className="flex items-center space-x-2">
-                  <Lock className="w-4 h-4 text-[#61b000]" />
-                  <span className="text-xs font-mono font-bold uppercase tracking-wider text-zinc-505">
+                  <Lock className="w-4 h-4 text-amber-600" />
+                  <span className="text-xs font-mono font-bold uppercase tracking-wider text-zinc-550">
                     Secure Checkout Exchange
                   </span>
                 </div>
@@ -121,7 +121,7 @@ export function CheckoutProvider({ children }: { children: React.ReactNode }) {
                     <span className="text-xs text-zinc-600 block mt-1 leading-relaxed">
                       {selectedProduct.description}
                     </span>
-                    <div className="mt-2 text-sm font-extrabold font-mono text-[#61b000]">
+                    <div className="mt-2 text-sm font-extrabold font-mono text-amber-600">
                       Price: {selectedProduct.price}
                     </div>
                   </div>
@@ -139,7 +139,7 @@ export function CheckoutProvider({ children }: { children: React.ReactNode }) {
                           required
                           value={billingForm.name}
                           onChange={(e) => setBillingForm({ ...billingForm, name: e.target.value })}
-                          className="w-full bg-white border border-zinc-300 rounded p-2 text-xs text-zinc-900 focus:outline-none focus:border-[#61b000]"
+                          className="w-full bg-white border border-zinc-300 rounded p-2 text-xs text-zinc-900 focus:outline-none focus:border-[#1d4ed8]"
                           placeholder="e.g. Danny Glix"
                         />
                       </div>
@@ -152,7 +152,7 @@ export function CheckoutProvider({ children }: { children: React.ReactNode }) {
                           required
                           value={billingForm.domain}
                           onChange={(e) => setBillingForm({ ...billingForm, domain: e.target.value })}
-                          className="w-full bg-white border border-zinc-300 rounded p-2 text-xs text-zinc-900 font-mono focus:outline-none focus:border-[#61b000]"
+                          className="w-full bg-white border border-zinc-300 rounded p-2 text-xs text-zinc-900 font-mono focus:outline-none focus:border-[#1d4ed8]"
                           placeholder="e.g. mycorp.com"
                         />
                       </div>
@@ -166,7 +166,7 @@ export function CheckoutProvider({ children }: { children: React.ReactNode }) {
                         required
                         value={billingForm.email}
                         onChange={(e) => setBillingForm({ ...billingForm, email: e.target.value })}
-                        className="w-full bg-white border border-zinc-300 rounded p-2 text-xs text-zinc-900 focus:outline-none focus:border-[#61b000]"
+                        className="w-full bg-white border border-zinc-300 rounded p-2 text-xs text-zinc-900 focus:outline-none focus:border-[#1d4ed8]"
                         placeholder="e.g. you@mycorp.com"
                       />
                     </div>
@@ -183,7 +183,7 @@ export function CheckoutProvider({ children }: { children: React.ReactNode }) {
                     <button
                       type="submit"
                       disabled={checkoutLoading}
-                      className="w-full bg-[#61b000] hover:bg-[#529400] text-white font-bold uppercase tracking-wider text-xs py-3.5 rounded border border-emerald-600 transition-colors cursor-pointer"
+                      className="w-full bg-[#1d4ed8] hover:bg-[#1e40af] text-white font-bold uppercase tracking-wider text-xs py-3.5 rounded border border-blue-700 transition-colors cursor-pointer"
                     >
                       {checkoutLoading ? "SUBMITTING TELEMETRY ORDER..." : "REQUEST THIS SERVICE SETUP ⚡"}
                     </button>
@@ -195,7 +195,7 @@ export function CheckoutProvider({ children }: { children: React.ReactNode }) {
                 </form>
               ) : (
                 <div className="p-8 text-center space-y-4">
-                  <CheckCircle2 className="w-12 h-12 text-[#61b000] mx-auto animate-bounce" />
+                  <CheckCircle2 className="w-12 h-12 text-emerald-600 mx-auto animate-bounce" />
                   <h3 className="text-base font-bold text-zinc-900 font-sans">Request Received!</h3>
                   <div className="bg-zinc-50 border border-zinc-200 p-4 rounded text-left text-xs space-y-2 max-w-sm mx-auto font-mono text-zinc-700">
                     <p className="font-bold border-b border-zinc-200 pb-1 text-zinc-900 uppercase font-sans">

@@ -194,15 +194,15 @@ export default function HomePage() {
             
             {/* High Impact Typography Header */}
             <motion.h1 variants={itemVariants} className="text-4xl sm:text-5xl lg:text-3xl xl:text-5xl font-extrabold tracking-tight text-[#fdfbf9] leading-tight font-sans">
-              Keep your domains secure and your emails out of the <span className="text-[#ec6231]">spam folder</span>.
+              Keep your domains secure and your emails out of the <span className="text-amber-500 font-bold">spam folder</span>.
             </motion.h1>
             
             {/* Friendly Expert Intro Card - Clean premium presentation */}
             <motion.div 
               variants={itemVariants}
-              className="group relative flex flex-col sm:flex-row items-center sm:items-start gap-4 p-5 bg-[#2a221f]/80 backdrop-blur-md border border-[#3e322d] rounded-2xl shadow-xl overflow-hidden hover:border-orange-500/20 transition-all duration-300"
+              className="group relative flex flex-col sm:flex-row items-center sm:items-start gap-4 p-5 bg-[#2a221f]/80 backdrop-blur-md border border-[#3e322d] rounded-2xl shadow-xl overflow-hidden hover:border-amber-500/20 transition-all duration-300"
             >
-              <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-orange-400/5 to-transparent rounded-full pointer-events-none" />
+              <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-amber-500/5 to-transparent rounded-full pointer-events-none" />
               
               <div className="relative w-14 h-14 rounded-full border border-[#443831] p-0.5 shadow-md flex-shrink-0 bg-[#faf8f5] overflow-hidden">
                 <Image 
@@ -217,7 +217,7 @@ export default function HomePage() {
               <div className="space-y-1.5 text-center sm:text-left">
                 <div className="flex flex-col sm:flex-row sm:items-center gap-2">
                   <h3 className="text-sm font-bold text-[#faf8f5] font-sans">Chester Carlson</h3>
-                  <span className="self-center sm:self-auto text-[9px] font-mono font-bold bg-[#61b000]/10 border border-[#61b000]/25 text-[#7ee000] px-2.5 py-0.5 rounded-full">
+                  <span className="self-center sm:self-auto text-[9px] font-mono font-bold bg-amber-500/10 border border-amber-500/30 text-amber-400 px-2.5 py-0.5 rounded-full">
                     Chief Deliverability Consultant
                   </span>
                 </div>
@@ -236,7 +236,7 @@ export default function HomePage() {
             <motion.div variants={itemVariants} className="pt-2 flex flex-col sm:flex-row gap-4">
               <Link 
                 href="/contact"
-                className="group inline-flex items-center justify-center gap-2 bg-[#ec6231] hover:bg-[#da501e] border-b-4 border-[#b53d12] active:border-b-0 active:translate-y-0.5 text-white text-xs font-bold uppercase tracking-widest px-8 py-4 rounded-xl shadow-md transition-all"
+                className="group inline-flex items-center justify-center gap-2 bg-amber-600 hover:bg-amber-500 border-b-4 border-amber-800 active:border-b-0 active:translate-y-0.5 text-white text-xs font-bold uppercase tracking-widest px-8 py-4 rounded-xl shadow-md transition-all"
               >
                 Inquire About Domain Alignment
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -252,7 +252,7 @@ export default function HomePage() {
             {/* Status bar */}
             <motion.div variants={itemVariants} className="flex items-center gap-3 text-xs font-mono text-zinc-450">
               <span className="flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-[#61b000]" />
+                <span className="w-2 h-2 rounded-full bg-amber-500" />
                 <span>Deliverability Checked</span>
               </span>
               <span>•</span>
@@ -318,7 +318,7 @@ export default function HomePage() {
 
             {/* Cozy Note */}
             <div className="bg-[#2d2521] border border-[#443831] p-4.5 rounded-2xl shadow-lg relative flex items-start gap-3">
-              <div className="w-8 h-8 rounded-full bg-[#ec6231]/10 border border-[#ec6231]/30 flex items-center justify-center text-orange-400 shrink-0 mt-0.5">
+              <div className="w-8 h-8 rounded-full bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-500 shrink-0 mt-0.5">
                 ✒️
               </div>
               <p className="text-xs text-zinc-300 leading-relaxed font-sans">
@@ -360,7 +360,7 @@ export default function HomePage() {
           {/* 3D Flip perspective container */}
           <div className="w-full max-w-5xl mx-auto" style={{ perspective: "2000px" }}>
             <motion.div
-              className="relative w-full h-[620px]"
+              className="relative w-full h-[740px] sm:h-[680px] lg:h-[620px]"
               style={{ 
                 transformStyle: "preserve-3d",
                 rotateY: rotateY
@@ -382,7 +382,7 @@ export default function HomePage() {
                 {/* Mail Window Frame Header */}
                 <div className="bg-[#f0ece4] border-b border-[#dfdad0] px-5 py-3.5 flex items-center justify-between shrink-0">
                   <div className="flex items-center gap-2">
-                    <span className="w-2.5 h-2.5 rounded-full bg-[#ec6231]/35 block" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-amber-500/35 block" />
                     <span className="w-2.5 h-2.5 rounded-full bg-[#f1be74]/35 block" />
                     <span className="w-2.5 h-2.5 rounded-full bg-[#a3c393]/35 block" />
                     <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#815c32] ml-2">
@@ -415,7 +415,7 @@ export default function HomePage() {
                     <div className="divide-y divide-[#dfdad0]/40 overflow-hidden flex-1">
                       
                       {/* Email Item 1 (Highlighted/Opened) */}
-                      <div className="p-4 bg-white border-l-4 border-[#ec6231] space-y-1">
+                      <div className="p-4 bg-white border-l-4 border-amber-500 space-y-1">
                         <div className="flex justify-between items-center">
                           <strong className="text-xs font-extrabold text-[#2a2420]">Acme Billing Partners</strong>
                           <span className="text-[9px] font-mono text-zinc-400">10:41 AM</span>
@@ -664,7 +664,7 @@ export default function HomePage() {
         <div className="max-w-6xl mx-auto px-4">
           
           <div className="max-w-3xl mb-12 space-y-3">
-            <span className="text-xs text-[#61b000] font-mono uppercase font-semibold tracking-widest block">
+            <span className="text-xs text-blue-600 font-mono uppercase font-semibold tracking-widest block">
               Strategic Security Risks
             </span>
             <h2 className="text-3xl font-extrabold tracking-tight text-zinc-900 leading-tight">
@@ -713,16 +713,16 @@ export default function HomePage() {
 
             {/* Scenario 3 */}
             <motion.div 
-              className="bg-white border-t-2 border-t-[#61b000] border border-zinc-200 p-6 rounded-2xl shadow-sm space-y-4 hover:shadow-lg transition-all duration-300"
+              className="bg-white border-t-2 border-t-blue-600 border border-zinc-200 p-6 rounded-2xl shadow-sm space-y-4 hover:shadow-lg transition-all duration-300"
               whileHover={{ y: -4 }}
             >
-              <div className="w-10 h-10 rounded-xl bg-lime-50 flex items-center justify-center">
-                <Mail className="w-5 h-5 text-[#61b000]" />
+              <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center">
+                <Mail className="w-5 h-5 text-blue-600" />
               </div>
               <div>
-                <span className="text-xs font-mono font-bold text-[#61b000] uppercase tracking-wider block mb-1">Risk Area 03</span>
+                <span className="text-xs font-mono font-bold text-blue-600 uppercase tracking-wider block mb-1">Risk Area 03</span>
                 <h3 className="text-base font-extrabold text-zinc-900 mb-2 font-sans">Mailbox Spam Isolation</h3>
-                <p className="text-xs text-zinc-605 leading-relaxed font-sans">
+                <p className="text-xs text-zinc-650 leading-relaxed font-sans">
                   Missing key checks causes spam filters to capture normal corporate threads. I deploy signed DKIM records to verify authentication anchors.
                 </p>
               </div>
@@ -770,7 +770,7 @@ export default function HomePage() {
                   />
                 </div>
                 <div>
-                  <span className="text-[10px] font-mono font-bold text-[#61b000] uppercase tracking-wider block mb-1">
+                  <span className="text-[10px] font-mono font-bold text-amber-600 uppercase tracking-wider block mb-1">
                     West Coast HQ
                   </span>
                   <h3 className="text-sm font-extrabold text-zinc-900 font-sans">
@@ -781,7 +781,7 @@ export default function HomePage() {
                   </p>
                 </div>
               </div>
-              <div className="pt-4 border-t border-zinc-200 flex items-center justify-between text-xs text-zinc-650 font-mono">
+              <div className="pt-4 border-t border-zinc-200 flex items-center justify-between text-xs text-zinc-655 font-mono">
                 <span>FOUNDED</span>
                 <span>OCTOBER 2011</span>
               </div>
@@ -805,8 +805,8 @@ export default function HomePage() {
               </div>
 
               {/* Testimonial 2 */}
-              <div className="bg-lime-50/20 border border-lime-200/50 p-6 rounded-2xl space-y-4">
-                <div className="flex items-center gap-1 text-[#61b000]">
+              <div className="bg-amber-50/20 border border-amber-200/40 p-6 rounded-2xl space-y-4">
+                <div className="flex items-center gap-1 text-amber-500">
                   ★★★★★
                 </div>
                 <p className="text-xs text-zinc-705 leading-relaxed font-sans italic">
@@ -861,7 +861,7 @@ export default function HomePage() {
         <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
           <div className="lg:col-span-6 space-y-5">
-            <span className="text-xs text-[#61b000] font-mono font-bold uppercase tracking-wider block">
+            <span className="text-xs text-blue-600 font-mono font-bold uppercase tracking-wider block">
               Our Professional Standards
             </span>
             <h2 className="text-3xl font-extrabold tracking-tight text-zinc-900">
@@ -887,27 +887,27 @@ export default function HomePage() {
             <div className="absolute top-0 right-0 w-32 h-32 bg-orange-400/5 rounded-full pointer-events-none" />
             
             <h3 className="text-xs font-mono uppercase font-black text-zinc-500 border-b border-zinc-200 pb-3 mb-4 flex items-center gap-1.5">
-              <Zap className="w-4 h-4 text-[#61b000]" />
+              <Zap className="w-4 h-4 text-amber-500" />
               CONSULTING ASSURANCE
             </h3>
 
             <div className="space-y-4">
               <div className="flex gap-3">
-                <CheckCircle2 className="w-5 h-5 text-[#61b000] flex-shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5" />
                 <div className="space-y-1">
                   <span className="text-xs font-bold text-zinc-900 block font-sans">Active DKIM Key Auditing</span>
                   <p className="text-[11px] text-zinc-500">We verify headers against official criteria so recipient servers accept signals.</p>
                 </div>
               </div>
               <div className="flex gap-3">
-                <CheckCircle2 className="w-5 h-5 text-[#61b000] flex-shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5" />
                 <div className="space-y-1">
                   <span className="text-xs font-bold text-zinc-900 block font-sans">Shield from Loss of Administration</span>
                   <p className="text-[11px] text-zinc-500">We guard your credentials, consolidate registry locks, and configure nameservers securely.</p>
                 </div>
               </div>
               <div className="flex gap-3">
-                <CheckCircle2 className="w-5 h-5 text-[#61b000] flex-shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5" />
                 <div className="space-y-1">
                   <span className="text-xs font-bold text-zinc-900 block font-sans">100% Manual Execution Warranty</span>
                   <p className="text-[11px] text-zinc-500">Every record is hand-checked and custom entered. Zero cookie-cutter templates.</p>
@@ -918,7 +918,7 @@ export default function HomePage() {
             <div className="mt-6 pt-5 border-t border-zinc-200 flex items-center gap-3">
               <Link 
                 href="/services"
-                className="text-xs font-bold uppercase text-[#61b000] hover:text-[#529400] transition-colors flex items-center gap-1 font-mono"
+                className="text-xs font-bold uppercase text-blue-600 hover:text-blue-800 transition-colors flex items-center gap-1 font-mono"
               >
                 BROWSE OUR SERVICES <ArrowRight className="w-3.5 h-3.5" />
               </Link>
@@ -982,7 +982,7 @@ export default function HomePage() {
               <div className="pt-8">
                 <Link 
                   href="/pricing"
-                  className="w-full inline-flex items-center justify-center gap-2 bg-[#ec6231] hover:bg-[#da501e] border-b-4 border-[#b53d12] id-b active:border-b-0 active:translate-y-0.5 text-white text-xs font-bold uppercase tracking-widest py-4 rounded-xl shadow-md transition-all text-center"
+                  className="w-full inline-flex items-center justify-center gap-2 bg-amber-600 hover:bg-amber-500 border-b-4 border-amber-800 active:border-b-0 active:translate-y-0.5 text-white text-xs font-bold uppercase tracking-widest py-4 rounded-xl shadow-md transition-all text-center"
                   id="estimator-button"
                 >
                   Run Cost Calculator ⚡
@@ -992,10 +992,10 @@ export default function HomePage() {
             </div>
 
             {/* Card Right: Direct Communication Channel */}
-            <div className="bg-white border-2 border-[#dfdad0] rounded-2xl p-8 text-[#2c2825] flex flex-col justify-between shadow-md relative overflow-hidden group hover:border-[#ec6231]/30 transition-colors duration-300">
+            <div className="bg-white border-2 border-[#dfdad0] rounded-2xl p-8 text-[#2c2825] flex flex-col justify-between shadow-md relative overflow-hidden group hover:border-blue-500/30 transition-colors duration-300">
               <div className="absolute top-0 right-0 w-32 h-32 bg-orange-50 rounded-full pointer-events-none opacity-50" />
               <div className="space-y-6">
-                <span className="text-[10px] uppercase font-mono tracking-widest font-bold text-[#b53d12] block border-b border-[#dfdad0] pb-3">
+                <span className="text-[10px] uppercase font-mono tracking-widest font-bold text-amber-600 block border-b border-[#dfdad0] pb-3">
                   02 // DIRECT HUMAN CHANNEL
                 </span>
                 <h3 className="text-xl sm:text-2xl font-extrabold text-[#2c2825] font-sans">
@@ -1009,7 +1009,7 @@ export default function HomePage() {
                 <div className="bg-[#FAF9F6] border border-[#dfdad0] rounded-xl p-4 space-y-2">
                   <div className="flex justify-between items-center text-[11px] font-mono text-[#815c32]">
                     <span>West Coast Dedicated Desk</span>
-                    <span className="text-[#61b000] font-bold">● Active Online</span>
+                    <span className="text-emerald-600 font-bold">● Active Online</span>
                   </div>
                   <div className="flex justify-between items-center text-[11px] font-mono text-zinc-500">
                     <span>Average Initial Analysis</span>
@@ -1021,7 +1021,7 @@ export default function HomePage() {
               <div className="pt-8">
                 <Link 
                   href="/contact"
-                  className="w-full inline-flex items-center justify-center gap-2 bg-[#ec6231] hover:bg-[#da501e] border-b-4 border-[#b53d12] active:border-b-0 active:translate-y-0.5 text-white text-xs font-bold uppercase tracking-widest py-4 rounded-xl shadow-md transition-all text-center"
+                  className="w-full inline-flex items-center justify-center gap-2 bg-amber-600 hover:bg-amber-500 border-b-4 border-amber-800 active:border-b-0 active:translate-y-0.5 text-white text-xs font-bold uppercase tracking-widest py-4 rounded-xl shadow-md transition-all text-center"
                   id="contact-button"
                 >
                   Connect with Chester Carlson ✉️
